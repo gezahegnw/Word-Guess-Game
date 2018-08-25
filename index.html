@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>HangMan</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="assets/css/reset.css">
+   <link rel="stylesheet" href="assets/css/style.css"> 
+</head>
+<body>
+    <div class="container">
+        <div class="jumbotron">
+            <img id="title-image" src="assets/images/images.jpg" alt="Hangman Title Image" />
+            <div>
+                <div>
+                    <h2 id="title">Press Any Key to Play!</h2>
+                </div>
+                <div>
+                   
+                    <div>
+                        <h2>Current Word</h2>
+                    </div>
+                    <div>
+                        <h2 id="wordGuess">_ _ _ _ _</h2>
+                    </div>
+                    <div>
+                         Wrong Guesses: <span id="wrongGuesses"></span>
+                    </div>
+                    <div>
+                        Guesses Remaining: <span id="guessesLeft"></span>
+                    </div>
+                    <div>
+                        Wins Count: <span id="countWins"></span> 
+                    </div>
+                    <div>
+                        Loss Count: <span id="countLoss"></span>  
+                    </div>                 
+                </div>
+            </div>
+        </div>
+    </div>
+    <Script src="assets/javascript/game.js"></Script>
+</body>
+</html>
