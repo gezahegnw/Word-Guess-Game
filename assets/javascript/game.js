@@ -19,11 +19,11 @@ let wordLists = [
     "mongodb",
     "python",
     "server",
-    "terminal",
+    "terminal"
 ];
 //variables
 var maxTries = 10; 
-var guessedLetter = "";       
+var secretWord = "";       
 var currentWordLists = [];
 var remainingGuesses = 0;  
 var guessingWords = [];          
@@ -35,8 +35,8 @@ var losses = 0;
 
 //function
 function startGame () {
-    guessedLetter = wordLists[Math.floor(Math.random() * wordLists.length)]; 
-    currentWordLists = guessedLetter.split("");
+    secretWord = wordLists[Math.floor(Math.random() * wordLists.length)]; 
+    currentWordLists = secretWord.split("");
     remainingGuesses = currentWordLists.length;
 
     // this resets the game
@@ -58,7 +58,7 @@ function startGame () {
     document.getElementById("countWins").innerHTML = wins;
     document.getElementById("countLoss").innerHTML = losses;
 //testing
-    console.log (guessedLetter);
+    console.log (secretWord);
     console.log(currentWordLists);
     console.log(remainingGuesses);
     console.log(guessingWords);
@@ -67,7 +67,7 @@ function startGame () {
 function chkLetters(letter) {
  var isLetInWord = false;   //this checks if the letter is in the array
  for (var i = 0; i < remainingGuesses; i++) {
-     if(guessedLetter[i] == letter) {
+     if(secretWord[i] == letter) {
          isLetInWord = true;
      }
         
@@ -75,7 +75,7 @@ function chkLetters(letter) {
  // this check if the letter in words and if its there then it populate out  wordlists array.
      if(isLetInWord) {  
         for (var i = 0; i <remainingGuesses; i++) {
-            if(guessedLetter[i] = letter) {
+            if(secretWord[i] = letter) {
                 guessingWords[i] = letter;
             }
         } 
@@ -90,10 +90,7 @@ function chkLetters(letter) {
 function roundComplete() {
     console.log("Count Wins: " + wins + " | Count Loss: "  + losses + " | Remaining Guess" + maxTries);
     //this block of code will run if the user won the game
-    document.getElementById("guessesLeft").innerHTML = maxTries;
-    document.getElementById("wordGuess").innerHTML = guessingWords.join(" ");
-    document.getElementById("wrongGuesses").innerHTML = wrongLetter.join(" ");
-
+    
     if (currentWordLists.toString() == guessingWords.toString()) {
         wins++;
         alert("We Got The Winner!");
@@ -113,14 +110,18 @@ function roundComplete() {
     }
         // this will updates the html
 
-    
+    document.getElementById("guessesLeft").innerHTML = maxTries;
+    document.getElementById("wordGuess").innerHTML = guessingWords.join(" ");
+    document.getElementById("wrongGuesses").innerHTML = wrongLetter.join(" ");
+
 }
 
 //main process bellow here 
 startGame();
 //key event
     document.onkeyup = function(event) {
-        var guessedLtr = String.fromCharCode(Event.keyCode).toLowerCase();
+      //var guessedLtr = String.fromCharCode(Event.keyCode).toLowerCase();
+        var guessedLtr = event.key;
          chkLetters(guessedLtr);
          roundComplete();
     //test the code
