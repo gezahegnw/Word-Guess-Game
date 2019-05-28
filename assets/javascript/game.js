@@ -1,5 +1,6 @@
 //word lists or arrays
 let wordLists = [
+    "won",
     "computer",
     "command",
     "conditionals",
@@ -43,9 +44,7 @@ function startGame () {
     wrongLetter = [];
     guessingWords = [];
     maxTries = 10; 
-    
 
-    
     //pupulate remmaining guesses and guessing words
 
     for (var i = 0; i < remainingGuesses; i++) {
@@ -63,7 +62,7 @@ function startGame () {
         console.log(remainingGuesses);
         console.log(guessingWords);
 } 
-//this function comper the letter user typing with the arrys
+//this function compere the letter user typing with the arrays
         function chkLetters(letter) {
          var isLetInWord = false;  
           //this checks if the letter is in the array
@@ -94,7 +93,11 @@ function startGame () {
     
          if (currentWordLists.toString() == guessingWords.toString()) {
              wins++;
-            alert("We Got The Winner!");
+             var wonGame = document.getElementById('winner');
+             wonGame.innerHTML = 'CONGRATS!! YOU WON. To start new game, Please press any key.';
+             wonGame.style.color = 'green';
+             wonGame.style.fontWeight = 'bold';
+           // alert("We Got The Winner!");
 
         // this will updates the html
              document.getElementById("countWins").innerHTML = wins;
@@ -102,11 +105,14 @@ function startGame () {
     }
         else if(maxTries == 0) {
             losses++;
-            alert("Sorry! You Lost!");
+         var gameOver =   document.getElementById('game-over');
+        gameOver.innerHTML = 'SORRY YOU LOST! To try again, Please press any key!';
+        gameOver.style.color = 'red';
+        gameOver.style.fontWeight = "bold";
+           // alert("Sorry! You Lost!");
 
      // this will updates the html
         document.getElementById("countLoss").innerHTML = losses;
-
         startGame();
     }
         // this will updates the html
@@ -120,10 +126,14 @@ function startGame () {
 //main process bellow here 
 startGame();
 //key event
+
     document.onkeyup = function(event) {
         var guessedLtr = event.key;
          chkLetters(guessedLtr);
+         document.getElementById('game-over').innerHTML = '';
+         document.getElementById('winner').innerHTML = '';
          roundComplete();
+
     //test the code
         console.log(guessedLtr);
 } 
