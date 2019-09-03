@@ -1,5 +1,5 @@
 //word lists or arrays
-let wordLists = [
+const wordLists = [
     "won",
     "computer",
     "command",
@@ -23,19 +23,19 @@ let wordLists = [
     "terminal"
 ];
 //variables
-    var maxTries = 10; 
-    var secretWord = "";       
-    var currentWordLists = [];
-    var remainingGuesses = 0;  
-    var guessingWords = [];          
-    var wrongLetter = [];           
+    let maxTries = 10; 
+    let secretWord = "";       
+    let currentWordLists = [];
+    let remainingGuesses = 0;  
+    let guessingWords = [];          
+    let wrongLetter = [];           
 
 //game country   
-var wins = 0;   
-var losses = 0;
+let wins = 0;   
+let losses = 0;
 
-//function
-function startGame () {
+//es6 arrow function 
+ startGame =() => {
     secretWord = wordLists[Math.floor(Math.random() * wordLists.length)]; 
     currentWordLists = secretWord.split("");
     remainingGuesses = currentWordLists.length;
@@ -47,7 +47,7 @@ function startGame () {
 
     //pupulate remmaining guesses and guessing words
 
-    for (var i = 0; i < remainingGuesses; i++) {
+    for (let i = 0; i < remainingGuesses; i++) {
         guessingWords.push("_");
 
     }
@@ -63,10 +63,11 @@ function startGame () {
         console.log(guessingWords);
 } 
 //this function compere the letter user typing with the arrays
-        function chkLetters(letter) {
-         var isLetInWord = false;  
+//es6 arrow function
+         chkLetters = letter => {
+         let isLetInWord = false;  
           //this checks if the letter is in the array
-         for (var i = 0; i < remainingGuesses; i++) {
+         for (let i = 0; i < remainingGuesses; i++) {
              if(secretWord[i] === letter) {
                  isLetInWord = true;
      }
@@ -74,7 +75,7 @@ function startGame () {
  } 
  // this check if the letter in words and if its there then it populate out  wordlists array.
          if(isLetInWord) {  
-            for (var i = 0; i <remainingGuesses; i++) {
+            for (let i = 0; i <remainingGuesses; i++) {
                 if(secretWord[i] === letter) {
                     guessingWords[i] = letter;
             }
@@ -86,14 +87,14 @@ function startGame () {
     }
          console.log(guessingWords);
 }
-
-    function roundComplete() {
-        console.log("Count Wins: " + wins + " | Count Loss: "  + losses + " | Remaining Guess" + maxTries);
+//es6 arrow function
+     roundComplete =() => {
+        console.log(`Count Wins:  ${wins }  | Count Loss: ${losses} | Remaining Guess: ${maxTries}`);
     //this block of code will run if the user won the game
     
          if (currentWordLists.toString() == guessingWords.toString()) {
              wins++;
-             var wonGame = document.getElementById('winner');
+             let wonGame = document.getElementById('winner');
              wonGame.innerHTML = 'CONGRATS!! YOU WON. To start new game, Please press any key.';
              wonGame.style.color = 'green';
              wonGame.style.fontWeight = 'bold';
@@ -105,7 +106,7 @@ function startGame () {
     }
         else if(maxTries == 0) {
             losses++;
-         var gameOver =   document.getElementById('game-over');
+         let gameOver =   document.getElementById('game-over');
         gameOver.innerHTML = 'SORRY YOU LOST! To try again, Please press any key!';
         gameOver.style.color = 'red';
         gameOver.style.fontWeight = "bold";
@@ -126,12 +127,13 @@ function startGame () {
 //main process bellow here 
 startGame();
 //key event
-
-    document.onkeyup = function(event) {
-        var guessedLtr = event.key;
+//document.onkeyup = function(event) es5 function syntax
+//es6 arrow function
+    document.onkeyup = event => {
+        let guessedLtr = event.key;
          chkLetters(guessedLtr);
-         document.getElementById('game-over').innerHTML = '';
-         document.getElementById('winner').innerHTML = '';
+         document.getElementById('game-over').innerHTML = '';//this will clear out the won alert message
+         document.getElementById('winner').innerHTML = '';//this will clear out the loss alert message
          roundComplete();
 
     //test the code
